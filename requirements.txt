@@ -6,3 +6,5 @@ fastapi
 uvicorn
 celery 
 pyotp
+streamlit
+watchdog

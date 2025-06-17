@@ -7,7 +7,7 @@ from relationship_graph import load_data, build_graph, find_k_shortest_paths
 
 st.set_page_config(page_title="Relationship Graph", layout="wide")
 
-st.title("Relationship Graph Explorer")
+st.title("Investor Connection")
 
 uploaded_file = st.file_uploader("Upload CSV", type="csv")
 source_name = st.text_input("Source person name")
