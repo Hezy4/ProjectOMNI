@@ -9,3 +9,4 @@ pyotp
 streamlit
 watchdog
 matplotlib
+scipy
