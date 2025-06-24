@@ -180,17 +180,6 @@ def main():
             score = nx.path_weight(G, path, weight='weight')
             print(f"  Path {i} (score={score:.2f}): {path}")
 
-    # quick graph visual (unchanged)
-    plt.figure(figsize=(12, 10))
-    pos = nx.spring_layout(G, k=0.5, seed=42)
-    palette = {'person':'lightblue','company':'lightgreen','college':'orange','group':'pink'}
-    colors = [palette.get(G.nodes[n].get('type','person'),'lightgray') for n in G]
-    nx.draw(G, pos, with_labels=True, node_color=colors,
-            node_size=500, font_size=8, edge_color='gray')
-    edge_labels = {(u,v):f"{d['weight']:.2f}" for u,v,d in G.edges(data=True)}
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_color='red')
-    plt.title("Weighted Relationship Graph")
-    plt.show()
 
 
 if __name__ == "__main__":
