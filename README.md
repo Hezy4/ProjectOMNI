@@ -1,70 +1,62 @@
-# Lyons Product
+Project OMNI: Pathfinding & Analysis Engine
+Core Features
 
-## Features
+    Targeted Search & Data Structuring
+        Leverages advanced search filters such as:
+            Industry
+            Geographic Region
+            Company Size
+        Gathers essential identification data (e.g., name, current employer).
+        Enriches initial data through detailed, one-by-one profile lookups to acquire information on:
+            Undergraduate & Graduate Education
+            Recent Employment History (last 3 positions)
+            Professional Group Affiliations
 
-- **LinkedIn Navigator Search**  
-  - Industry  
-  - Region  
-  - Company size  
+    Local CSV Storage
+        Compiles the complete, enriched dataset into a clean CSV format.
+        Enables easy local saving and data portability.
 
-- **Sales Navigator Data Collection**  
-  1. Collect basic identification:  
-     - Name  
-     - Employer  
-  2. Enrichment (one-by-one profile lookup):  
-     - Undergrad  
-     - Grad school  
-     - Past 3 companies  
-     - Groups/memberships  
+    Advanced Scoring & Pathfinding
+        Assigns a quantitative score to each individual profile based on a proprietary weighting system.
+        Calculates the optimal X number of paths between a designated start and target node within the dataset.
+        Presents the final results through a clean, modern, and minimalist user interface.
 
-- **CSV Storage**  
-  - Gather enriched dataset in CSV format  
-  - Save locally  
+    Note: The initial data collection from professional networking sites is handled by a separate, private browser extension. This engine is designed to process and analyze the data provided by that tool.
 
-- **Scoring & Pathfinding**  
-  1. Weight each person by a score  
-  2. Find the best **X** paths from start node to target node  
-  3. Display results on a modern, minimalist UI  
+Technical Roadmap
+1. Data Collection & Enrichment Logic
 
----
+(Handled by the private data acquisition tool)
 
-## Roadmap
+    Navigate to each profile within a search result.
+    Perform automated scrolling and section expansion to reveal and extract key data points.
+    Capture detailed educational and employment history.
+    Catalog and structure the following:
+        Top 3 most recent companies by tenure.
+        Complete employment history.
+        Group and association memberships.
+    Incorporate a Notes field to capture profile bio text for subsequent AI analysis.
+    Append all structured information—education, past companies, etc.—to the primary CSV dataset.
+    Systematically mark profiles as "completed" and iterate through the entire list.
 
-### 1. Data Collection Algorithm  
-1. Click on the name of each node  
-2. In the side panel, scroll down and back up  
-3. Expand sections to extract:  
-   - Education & past employment  
-4. Catalog:  
-   - Best 3 companies (by attendance time)  
-   - Full employment history  
-   - Groups/memberships  
-5. Add a **Notes** section to capture LinkedIn bio for AI processing  
-6. Append all information to CSV:  
-   - Education  
-   - Past companies  
-7. Mark node as completed and continue to the next node  
+2. Data Processing & Pathfinding Algorithm
 
-### 2. Data Processing Algorithm  
-1. Normalize all collected data  
-2. Run each node through a local (or cloud-based) AI model to compute a weight score (lower = better):  
-   - Company history  
-   - Education history  
-   - Industry alignment  
-   - Closeness to target  
-   - Bio contents  
-   - LinkedIn memberships/groups  
-3. Build a graph with nodes and weighted connections  
-4. Find the lowest-weighted path (apply a penalty per extra hop to favor shorter chains)  
-5. Present the top **X** options (user-configurable) in the frontend UI  
+(Core logic of this engine)
 
----
+    Normalize and clean the entire collected dataset for consistency.
+    Process each profile through a local or cloud-based AI model to compute a weight score (lower is better), considering factors such as:
+        Company History & Prestige
+        Educational Background
+        Industry Alignment
+        Network Proximity to Target
+        Keywords and Sentiment in Bio
+        Relevance of Professional Memberships
+    Construct a weighted graph data structure from the scored profiles.
+    Execute a pathfinding algorithm to identify the lowest-weighted paths, applying a penalty for each additional "hop" to prioritize shorter connection chains.
+    Display the top X (a user-configurable number) optimal paths in the frontend UI for review and analysis.
 
-## Notes
+Technical & Operational Notes
 
-- Prefer a local AI model, but cloud services are acceptable if needed  
-- Target performance: ≤ 5 minutes per 1,000 profiles  
-- Entire workflow via the UI (no visible browser windows)  
-- Filters applied in the background on Sales Navigator  
-- Operate without an active Chrome tab in the foreground  
-- Implement a user-consent model to ensure compliance with scraping laws  
+    Performance Target: The system is designed to process at reasonable rate (currently untested)
+    User Experience: The entire analysis workflow is managed through the UI, with no visible browser automation windows.
+    Compliance: The data acquisition methodology is designed around a user-consent model to ensure responsible and compliant data handling.
